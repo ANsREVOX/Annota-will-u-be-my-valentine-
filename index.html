@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine, Annotta?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #ffebee;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #ff1744;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: heart-float 1.5s ease-in-out infinite;
+        }
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes heart-float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-800px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Annotta, will you be my Valentine?</h1>
+    <div class="button-container">
+        <button id="yes-btn">Yes</button>
+        <button id="no-btn">No</button>
+    </div>
+    <div class="hearts"></div>
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const heartsContainer = document.querySelector('.hearts');
+        const messages = [
+            'Are you sure?',
+            'You are making me sad...',
+            'Please reconsider!',
+            'I will be heartbroken...'
+        ];
+        let clickCount = 0;
+
+        noBtn.addEventListener('click', () => {
+            clickCount++;
+            noBtn.style.position = 'absolute';
+            noBtn.style.top = `${Math.random() * window.innerHeight - 50}px`;
+            noBtn.style.left = `${Math.random() * window.innerWidth - 50}px`;
+            noBtn.innerText = messages[Math.min(clickCount, messages.length - 1)];
+        });
+
+        yesBtn.addEventListener('click', () => {
+            for (let i = 0; i < 100; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                heartsContainer.appendChild(heart);
+                setTimeout(() => {
+                    heartsContainer.removeChild(heart);
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>
