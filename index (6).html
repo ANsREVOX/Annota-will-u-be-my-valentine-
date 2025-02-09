@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine, Annota?</title>
+    <title>Will You Be My Valentine, Annotta?</title>
     <style>
         body {
             display: flex;
@@ -11,7 +11,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: url('https://media.giphy.com/media/3o6gbeVN2ZPbG2COKA/giphy.gif') no-repeat center center fixed;
+            background: url('your-image.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: Arial, sans-serif;
             overflow: hidden;
@@ -57,11 +57,19 @@
             background-color: #d50000;
             transform: scale(1.1);
         }
+        #next-btn {
+            background-color: blue;
+            margin-top: 20px;
+        }
+        #next-btn:hover {
+            background-color: #2979ff;
+            transform: scale(1.1);
+        }
         .pigeon {
             position: absolute;
             width: 50px;
             height: 50px;
-            background: url('https://attic.sh/hw1i18spj8h2i4ziq3192hu2bjtu') no-repeat center center;
+            background: url('your-pigeon-image-url') no-repeat center center;
             background-size: contain;
             animation: pigeon-fall 2s linear;
         }
@@ -119,7 +127,7 @@
     </style>
 </head>
 <body>
-    <img src="https://media1.tenor.com/m/d8Ou58qpHeIAAAAC/please-begging.gif" alt="Valentine GIF" />
+    <img src="your-gif-url" alt="Valentine GIF" />
     <h1>Annotta, will you be my Valentine?</h1>
     <div class="button-container">
         <button id="yes-btn">Yes</button>
@@ -168,8 +176,8 @@
             yaySound.play();
             setTimeout(() => {
                 document.body.innerHTML = `
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background-color: #fff;">
-                        <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" />
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
+                        <img src="your-gif-url" alt="Celebration GIF" />
                         <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
                         <button id="next-btn">Next</button>
                     </div>
@@ -181,7 +189,8 @@
                         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
                             <img src="your-pic-url" alt="Special Picture" />
                         </div>
-                `;
+                    `;
+                });
             }, 1000); // Delay to allow sound to play before changing the screen
         });
     </script>
