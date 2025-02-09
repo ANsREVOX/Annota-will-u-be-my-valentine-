@@ -13,6 +13,7 @@
             height: 100vh;
             background-color: #ffebee;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
         h1 {
             color: #ff1744;
@@ -26,6 +27,22 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+        }
+        .pigeon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('your-pigeon-image-url') no-repeat center center;
+            background-size: contain;
+            animation: pigeon-fall 2s linear;
+        }
+        @keyframes pigeon-fall {
+            0% {
+                top: -50px;
+            }
+            100% {
+                top: 100vh;
+            }
         }
         .hearts {
             position: absolute;
@@ -87,29 +104,40 @@
             'Are you sure?',
             'You are making me sad...',
             'Please reconsider!',
-            'I will be heartbroken...'
+            'I will be heartbroken...',
+            'Think again?',
+            'You can\'t be serious!',
+            'This hurts...',
+            'Please say yes...',
+            'Don\'t break my heart...',
+            'One more chance...'
         ];
         let clickCount = 0;
 
         noBtn.addEventListener('click', () => {
             clickCount++;
             noBtn.style.position = 'absolute';
-            noBtn.style.top = `${Math.random() * window.innerHeight - 50}px`;
-            noBtn.style.left = `${Math.random() * window.innerWidth - 50}px`;
-            noBtn.innerText = messages[Math.min(clickCount, messages.length - 1)];
+            noBtn.style.top = `${Math.random() * (window.innerHeight - noBtn.offsetHeight)}px`;
+            noBtn.style.left = `${Math.random() * (window.innerWidth - noBtn.offsetWidth)}px`;
+            noBtn.innerText = messages[clickCount % messages.length];
+
+            // Create a falling pigeon
+            const pigeon = document.createElement('div');
+            pigeon.classList.add('pigeon');
+            pigeon.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
+            document.body.appendChild(pigeon);
+            setTimeout(() => {
+                document.body.removeChild(pigeon);
+            }, 2000);
         });
 
         yesBtn.addEventListener('click', () => {
-            for (let i = 0; i < 100; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.animationDelay = `${Math.random() * 2}s`;
-                heartsContainer.appendChild(heart);
-                setTimeout(() => {
-                    heartsContainer.removeChild(heart);
-                }, 1500);
-            }
+            document.body.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
+                    <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
+                    <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" />
+                </div>
+            `;
         });
     </script>
 </body>
