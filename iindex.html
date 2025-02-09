@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine, Annotta?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://media1.tenor.com/images/9586846990183c06e768204cd0593eee/tenor.gif?itemid=4988595') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+             overflow: hidden;
+        }
+        h1 {
+            color: #ff1744;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .pigeon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('your-pigeon-image-url') no-repeat center center;
+            background-size: contain;
+            animation: pigeon-fall 2s linear;
+        }
+        @keyframes pigeon-fall {
+            0% {
+                top: -50px;
+            }
+            100% {
+                top: 100vh;
+            }
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: heart-float 1.5s ease-in-out infinite;
+        }
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes heart-float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-800px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Annotta, will you be my Valentine?</h1>
+    <div class="button-container">
+        <button id="yes-btn">Yes</button>
+        <button id="no-btn">No</button>
+    </div>
+    <div class="hearts"></div>
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const heartsContainer = document.querySelector('.hearts');
+        const messages = [
+            'Are you sure?',
+            'You are making me sad...',
+            'Please reconsider!',
+            'I will be heartbroken...',
+            'Think again?',
+            'You can\'t be serious!',
+            'This hurts...',
+            'Please say yes...',
+            'Don\'t break my heart...',
+            'One more chance...'
+        ];
+        let clickCount = 0;
+
+        noBtn.addEventListener('click', () => {
+            clickCount++;
+            noBtn.style.position = 'absolute';
+            noBtn.style.top = `${Math.random() * (window.innerHeight - noBtn.offsetHeight)}px`;
+            noBtn.style.left = `${Math.random() * (window.innerWidth - noBtn.offsetWidth)}px`;
+            noBtn.innerText = messages[clickCount % messages.length];
+
+            // Create a falling pigeon
+            const pigeon = document.createElement('div');
+            pigeon.classList.add('pigeon');
+            pigeon.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
+            document.body.appendChild(pigeon);
+            setTimeout(() => {
+                document.body.removeChild(pigeon);
+            }, 2000);
+        });
+
+        yesBtn.addEventListener('click', () => {
+            document.body.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
+                    <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
+                    <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" />
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
