@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine, Annota?</title>
+    <title>Will You Be My Valentine, Annotta?</title>
     <style>
         body {
             display: flex;
@@ -55,6 +55,14 @@
         }
         #no-btn:hover {
             background-color: #d50000;
+            transform: scale(1.1);
+        }
+        #next-btn {
+            background-color: blue;
+            margin-top: 20px;
+        }
+        #next-btn:hover {
+            background-color: #2979ff;
             transform: scale(1.1);
         }
         .pigeon {
@@ -169,10 +177,34 @@
             setTimeout(() => {
                 document.body.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background-color: #fff;">
-                        <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" />
+                        <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" />
                         <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
+                        <button id="pics-btn">Pics</button>
+                        <button id="song-btn">Song for You</button>
+                        <button id="next-btn">Next</button>
                     </div>
                 `;
+
+                // Add event listeners for new buttons
+                const picsBtn = document.getElementById('pics-btn');
+                const songBtn = document.getElementById('song-btn');
+                const nextBtn = document.getElementById('next-btn');
+
+                picsBtn.addEventListener('click', () => {
+                    window.location.href = 'https://example.com/your-pics-url';
+                });
+
+                songBtn.addEventListener('click', () => {
+                    window.location.href = 'https://example.com/your-song-url';
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    document.body.innerHTML = `
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
+                            <img src="https://example.com/your-pic-url.jpg" alt="Special Picture" />
+                        </div>
+                    `;
+                });
             }, 1000); // Delay to allow sound to play before changing the screen
         });
     </script>
