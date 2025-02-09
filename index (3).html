@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine, Annota?🐦🐦</title>
+    <title>Will You Be My Valentine, Annotta?</title>
     <style>
         body {
             display: flex;
@@ -11,14 +11,15 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: url('https://cdn.dribbble.com/users/10818/screenshots/4233050/play-06b-dribbble.gif') no-repeat center center fixed;
+            background: url('your-image.jpg') no-repeat center center fixed;
             background-size: cover;
             font-family: Arial, sans-serif;
-             overflow: hidden;
-         }
+            overflow: hidden;
+        }
         h1 {
             font-size: 3em;
             animation: rainbow-text 5s linear infinite;
+        }
         @keyframes rainbow-text {
             0% { color: red; }
             14% { color: orange; }
@@ -37,7 +38,7 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-                        border: none;
+            border: none;
             border-radius: 5px;
             color: white;
             transition: transform 0.3s, background-color 0.3s;
@@ -118,16 +119,18 @@
     </style>
 </head>
 <body>
-     <img src="https://gifdb.com/images/high/milk-and-mocha-love-me-rg6ve4g0z8mip842.gif" alt="Valentine GIF" />
-    <h1>Annota, will you be my Valentine?🐦🐦🐦💕💕</h1>
+    <img src="your-gif-url" alt="Valentine GIF" />
+    <h1>Annotta, will you be my Valentine?</h1>
     <div class="button-container">
         <button id="yes-btn">Yes</button>
         <button id="no-btn">No</button>
     </div>
     <div class="hearts"></div>
+    <audio id="yay-sound" src="your-sound-file.mp3"></audio>
     <script>
         const noBtn = document.getElementById('no-btn');
         const yesBtn = document.getElementById('yes-btn');
+        const yaySound = document.getElementById('yay-sound');
         const heartsContainer = document.querySelector('.hearts');
         const messages = [
             'Are you sure?',
@@ -153,6 +156,7 @@
             // Create a falling pigeon
             const pigeon = document.createElement('div');
             pigeon.classList.add('pigeon');
+            pigeon.style.top = '0';
             pigeon.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
             document.body.appendChild(pigeon);
             setTimeout(() => {
@@ -161,12 +165,15 @@
         });
 
         yesBtn.addEventListener('click', () => {
-            document.body.innerHTML = `
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
-                    <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
-                    <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" />
-                </div>
-            `;
+            yaySound.play();
+            setTimeout(() => {
+                document.body.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
+                        <img src="your-gif-url" alt="Celebration GIF" />
+                        <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
+                    </div>
+                `;
+            }, 1000); // Delay to allow sound to play before changing the screen
         });
     </script>
 </body>
