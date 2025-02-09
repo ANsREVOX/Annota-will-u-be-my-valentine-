@@ -71,21 +71,6 @@
             background-color: #ff9800;
             transform: scale(1.1);
         }
-        #next-btn {
-            background-color: blue;
-            margin-top: 20px;
-        }
-        #next-btn:hover {
-            background-color: #2979ff;
-            transform: scale(1.1);
-        }
-        #back-btn {
-            background-color: gray;
-        }
-        #back-btn:hover {
-            background-color: #9e9e9e;
-            transform: scale(1.1);
-        }
         .pigeon {
             position: absolute;
             width: 50px;
@@ -154,86 +139,4 @@
         <button id="yes-btn">Yes</button>
         <button id="no-btn">No</button>
     </div>
-    <div class="hearts"></div>
-    <audio id="yay-sound" src="your-sound-file.mp3"></audio>
-    <script>
-        const noBtn = document.getElementById('no-btn');
-        const yesBtn = document.getElementById('yes-btn');
-        const yaySound = document.getElementById('yay-sound');
-        const heartsContainer = document.querySelector('.hearts');
-        const messages = [
-            'Are you sure?',
-            'You are making me sad...',
-            'Please reconsider!',
-            'I will be heartbroken...',
-            'Think again?',
-            'You can\'t be serious!',
-            'This hurts...',
-            'Please say yes...',
-            'Don\'t break my heart...',
-            'One more chance...'
-        ];
-        let clickCount = 0;
-
-        noBtn.addEventListener('click', () => {
-            clickCount++;
-            noBtn.style.position = 'absolute';
-            noBtn.style.top = `${Math.random() * (window.innerHeight - noBtn.offsetHeight)}px`;
-            noBtn.style.left = `${Math.random() * (window.innerWidth - noBtn.offsetWidth)}px`;
-            noBtn.innerText = messages[clickCount % messages.length];
-
-            // Create a falling pigeon
-            const pigeon = document.createElement('div');
-            pigeon.classList.add('pigeon');
-            pigeon.style.top = '0';
-            pigeon.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
-            document.body.appendChild(pigeon);
-            setTimeout(() => {
-                document.body.removeChild(pigeon);
-            }, 2000);
-        });
-
-        yesBtn.addEventListener('click', () => {
-            yaySound.play();
-            setTimeout(() => {
-                document.body.innerHTML = `
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background-color: #fff;">
-                        <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" />
-                        <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
-                        <button id="pics-btn">Pics</button>
-                        <button id="song-btn">Song for You</button>
-                        <button id="next-btn">Next</button>
-                    </div>
-                `;
-
-                // Add event listeners for new buttons
-                const picsBtn = document.getElementById('pics-btn');
-                const songBtn = document.getElementById('song-btn');
-                const nextBtn = document.getElementById('next-btn');
-
-                picsBtn.addEventListener('click', () => {
-                    window.location.href = 'https://media1.tenor.com/m/d8Ou58qpHeIAAAAC/please-begging.gif';
-                });
-
-                songBtn.addEventListener('click', () => {
-                    window.location.href = 'https://youtu.be/MCwlA7lsv8I?si=rDTkJR0H3YWoVGCR';
-                });
-
-                nextBtn.addEventListener('click', () => {
-                    document.body.innerHTML = `
-                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
-                            <img src="https://media1.tenor.com/m/d8Ou58qpHeIAAAAC/please-begging.gif" alt="Special Picture" />
-                            <button id="back-btn">Back</button>
-                        </div>
-                    `;
-
-                    // Add event listener for Back button
-                    const backBtn = document.getElementById('back-btn');
-                    backBtn.addEventListener('click', () => {
-                        document.body.innerHTML = `
-                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background-color: #fff;">
-                                <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" />
-                                <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
-                                <button id="pics-btn">Pics</button>
-                                <button id="song-btn">Song for You</button>
-                                <button id="next-btn">Next</
+    <div class="hearts"></
