@@ -171,7 +171,16 @@
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background-color: #fff;">
                         <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" />
                         <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
+                        <button id="next-btn">Next</button>
                     </div>
+                `;
+
+                const nextBtn = document.getElementById('next-btn');
+                nextBtn.addEventListener('click', () => {
+                    document.body.innerHTML = `
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
+                            <img src="your-pic-url" alt="Special Picture" />
+                        </div>
                 `;
             }, 1000); // Delay to allow sound to play before changing the screen
         });
