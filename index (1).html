@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Will You Be My Valentine, Annotta?</title>
     <style>
         body {
@@ -10,7 +10,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
+            margin: 0;
             background: url('https://media.giphy.com/media/3o6gbeVN2ZPbG2COKA/giphy.gif') no-repeat center center fixed;
             background-size: cover;
             font-family: Arial, sans-serif;
@@ -18,6 +19,8 @@
         }
         h1 {
             font-size: 3em;
+            text-align: center;
+            padding: 0 10px;
             animation: rainbow-text 5s linear infinite;
         }
         @keyframes rainbow-text {
@@ -32,7 +35,11 @@
         }
         .button-container {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 20px;
+            width: 100%;
+            padding: 0 10px;
         }
         button {
             padding: 10px 20px;
@@ -42,6 +49,8 @@
             border-radius: 5px;
             color: white;
             transition: transform 0.3s, background-color 0.3s;
+            width: 100%;
+            max-width: 200px;
         }
         #yes-btn {
             background-color: green;
@@ -148,7 +157,7 @@
     </style>
 </head>
 <body>
-    <img src="https://media.tenor.com/images/5c24c7c6f546d4346c09c01738f93f9e/tenor.gif" alt="Valentine GIF" />
+    <img src="https://media.tenor.com/images/5c24c7c6f546d4346c09c01738f93f9e/tenor.gif" alt="Valentine GIF" style="max-width: 100%; height: auto;" />
     <h1>Annotta, will you be my Valentine?</h1>
     <div class="button-container">
         <button id="yes-btn">Yes</button>
@@ -198,7 +207,7 @@
             setTimeout(() => {
                 document.body.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background-color: #fff;">
-                        <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" />
+                        <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" style="max-width: 100%; height: auto;" />
                         <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
                         <button id="pics-btn">Pics</button>
                         <button id="song-btn">Song for You</button>
@@ -222,27 +231,10 @@
                 nextBtn.addEventListener('click', () => {
                     document.body.innerHTML = `
                         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #fff;">
-                            <img src="https://media1.tenor.com/m/d8Ou58qpHeIAAAAC/please-begging.gif" alt="Special Picture" />
+                            <img src="https://media1.tenor.com/m/d8Ou58qpHeIAAAAC/please-begging.gif" alt="Special Picture" style="max-width: 100%; height: auto;" />
                             <button id="back-btn">Back</button>
                         </div>
                     `;
 
                     // Add event listener for Back button
                     const backBtn = document.getElementById('back-btn');
-                    backBtn.addEventListener('click', () => {
-                        document.body.innerHTML = `
-                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background-color: #fff;">
-                                <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="Celebration GIF" />
-                                <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
-                                <button id="pics-btn">Pics</button>
-                                <button id="song-btn">Song for You</button>
-                                <button id="next-btn">Next</button>
-                            </div>
-                        `;
-                    });
-                });
-            }, 1000); // Delay to allow sound to play before changing the screen
-        });
-    </script>
-</body>
-</html>
