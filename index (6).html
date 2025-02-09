@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine, Annota?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://media.giphy.com/media/3o6gbeVN2ZPbG2COKA/giphy.gif') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            animation: rainbow-text 5s linear infinite;
+        }
+        @keyframes rainbow-text {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            57% { color: blue; }
+            71% { color: indigo; }
+            85% { color: violet; }
+            100% { color: red; }
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        #yes-btn {
+            background-color: green;
+        }
+        #yes-btn:hover {
+            background-color: #00c853;
+            transform: scale(1.1);
+        }
+        #no-btn {
+            background-color: red;
+        }
+        #no-btn:hover {
+            background-color: #d50000;
+            transform: scale(1.1);
+        }
+        .pigeon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://attic.sh/hw1i18spj8h2i4ziq3192hu2bjtu') no-repeat center center;
+            background-size: contain;
+            animation: pigeon-fall 2s linear;
+        }
+        @keyframes pigeon-fall {
+            0% {
+                top: -50px;
+            }
+            100% {
+                top: 100vh;
+            }
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: heart-float 1.5s ease-in-out infinite;
+        }
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes heart-float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-800px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://media1.tenor.com/m/d8Ou58qpHeIAAAAC/please-begging.gif" alt="Valentine GIF" />
+    <h1>Annotta, will you be my Valentine?</h1>
+    <div class="button-container">
+        <button id="yes-btn">Yes</button>
+        <button id="no-btn">No</button>
+    </div>
+    <div class="hearts"></div>
+    <audio id="yay-sound" src="your-sound-file.mp3"></audio>
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const yaySound = document.getElementById('yay-sound');
+        const heartsContainer = document.querySelector('.hearts');
+        const messages = [
+            'Are you sure?',
+            'You are making me sad...',
+            'Please reconsider!',
+            'I will be heartbroken...',
+            'Think again?',
+            'You can\'t be serious!',
+            'This hurts...',
+            'Please say yes...',
+            'Don\'t break my heart...',
+            'One more chance...'
+        ];
+        let clickCount = 0;
+
+        noBtn.addEventListener('click', () => {
+            clickCount++;
+            noBtn.style.position = 'absolute';
+            noBtn.style.top = `${Math.random() * (window.innerHeight - noBtn.offsetHeight)}px`;
+            noBtn.style.left = `${Math.random() * (window.innerWidth - noBtn.offsetWidth)}px`;
+            noBtn.innerText = messages[clickCount % messages.length];
+
+            // Create a falling pigeon
+            const pigeon = document.createElement('div');
+            pigeon.classList.add('pigeon');
+            pigeon.style.top = '0';
+            pigeon.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
+            document.body.appendChild(pigeon);
+            setTimeout(() => {
+                document.body.removeChild(pigeon);
+            }, 2000);
+        });
+
+        yesBtn.addEventListener('click', () => {
+            yaySound.play();
+            setTimeout(() => {
+                document.body.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background-color: #fff;">
+                        <img src="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" alt="https://i.makeagif.com/media/12-24-2017/1nJ2Dv.gif" />
+                        <h1>YAY! I LOVE YOU SO MUCH, MY LIL PIGEON!</h1>
+                    </div>
+                `;
+            }, 1000); // Delay to allow sound to play before changing the screen
+        });
+    </script>
+</body>
+</html>
